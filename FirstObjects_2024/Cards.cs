@@ -103,7 +103,7 @@ public readonly struct Suit
     /// <summary>
     /// Use this list when Creating a Deck
     /// </summary>
-    public static readonly Suit[] AllSuits = [Spades, Hearts, Clubs, Diamonds];
+    public static readonly Suit[] AllSuits = {Spades, Hearts, Clubs, Diamonds};
     
     private readonly char _symbol;
     private Suit(char symbol)
@@ -146,7 +146,7 @@ public readonly struct Value : IComparable
     public static readonly Value AceHigh = new(14);
 
     public static readonly Value[] AceLowValues =
-    [
+        {
         AceLow,
         Two,
         Three,
@@ -160,11 +160,11 @@ public readonly struct Value : IComparable
         Jack,
         Queen,
         King
-    ];
+    };
     
     
     public static readonly Value[] AceHighValues =
-    [
+        {
         AceHigh,
         Two,
         Three,
@@ -178,7 +178,7 @@ public readonly struct Value : IComparable
         Jack,
         Queen,
         King
-    ];
+    };
     private readonly int _value;
 
     /// <summary>
