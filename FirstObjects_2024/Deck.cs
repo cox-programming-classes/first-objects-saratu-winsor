@@ -5,8 +5,6 @@ using System.Net.Security;
 namespace FirstObjects_2024;
 
 
-
-
 public class Deck : IEnumerable<Card>
 {
     
