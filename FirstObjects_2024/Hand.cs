@@ -1,4 +1,5 @@
 using System.Net.Sockets;
+using System.Reflection;
 
 namespace FirstObjects_2024;
 
@@ -38,3 +39,7 @@ public class Hand //: IEnumerable<Card>
     
     public bool Has(card s) => _cards.Any(card => card.card == s);
 }
+
+
+
+

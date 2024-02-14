@@ -39,6 +39,26 @@ public class Deck : IEnumerable<Card>
         _cards.RemoveAt(0); // if you don't remove it, you're making a copy
         return card;
     }
+    
+    //split
+    private (List<Card>, List<Card) Split ()
+    {
+        var pile1 = new List<Card>();
+        var pile2 = new List<Card>();
+        var count = _cards.Count;
+        for (int i = 0; i < count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                pile1.Add(DealOne());
+            }
+            else
+            {
+                pile2.Add(DealOne());
+            }
+        }
+    }
+    
 /// <summary>
 /// deal n cards from the deck, be sure to cast this as a concrete type immediately otherwise cards will be deleted
 /// </summary>
@@ -67,19 +87,33 @@ public class Deck : IEnumerable<Card>
     /// interest the card randomly into the current list of Cards
     /// </summary>
     /// <param name="card">The card to be inserted.</param>
-    // public void InsertRandomly(Card card){...}
-    
+    public void InsertRandomly(Card card){...}
+
     /// <summary>
     /// Using the Random Number Generator
     /// </summary>
     /// <param name="cards">The cards to be inserted.</param>
-    //public void InsertRandomly(IEnumerable<Card> cards)
-    
+    public void InsertRandomly(IEnumerable<Card> cards)
+    {
+        
+    }
+
     /// <summary>
     /// Shuffle the Deck of Cards
     /// TODO: Describe your algorithm here
     /// </summary>
-    //public void Shuffle(){...}
+    public void Shuffle()
+    {
+        (var pile1, var pile2) = Split();
+
+        InsertRandomly(pile1);
+        InsertRandomly(pile2);
+        
+    }
+   
+    
+    
+    
     #region Enumerable Stuff
     public IEnumerator<Card> GetEnumerator()
     {
