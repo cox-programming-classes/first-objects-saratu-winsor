@@ -41,7 +41,7 @@ public class Deck : IEnumerable<Card>
     }
     
     //split
-    private (List<Card>, List<Card) Split ()
+    private (List<Card>, List<Card>) Split ()
     {
         var pile1 = new List<Card>();
         var pile2 = new List<Card>();
@@ -57,6 +57,8 @@ public class Deck : IEnumerable<Card>
                 pile2.Add(DealOne());
             }
         }
+
+        return (pile1, pile2); 
     }
     
 /// <summary>
@@ -87,7 +89,7 @@ public class Deck : IEnumerable<Card>
     /// interest the card randomly into the current list of Cards
     /// </summary>
     /// <param name="card">The card to be inserted.</param>
-    public void InsertRandomly(Card card){...}
+    //public void InsertRandomly(Card card){...}
 
     /// <summary>
     /// Using the Random Number Generator

@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Net.Sockets;
 using System.Reflection;
 
 namespace FirstObjects_2024;
 
-public class Hand //: IEnumerable<Card>
+public class Hand : IEnumerable<Card>
 {
     private readonly List<Card> _cards;
     private static readonly Random rand = new();
@@ -34,12 +35,27 @@ public class Hand //: IEnumerable<Card>
     }
 
     public bool Has(Suit s) => _cards.Any(card => card.Suit == s);
-   
+
     public bool Has(Value s) => _cards.Any(card => card.Value == s);
-    
-    public bool Has(card s) => _cards.Any(card => card.card == s);
+
+    public bool Has(Card s) => _cards.Any(card => card == s);
+
+
+    public IEnumerator<Card> GetEnumerator()
+    {
+        return _cards.GetEnumerator();
+    }
+
+    public override string ToString() =>
+        _cards
+            .Select(card => $"{card}")
+            .Aggregate((a, b) => $"{a}, {b}");
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable)_cards).GetEnumerator();
+    }
+
 }
-
-
 
 
