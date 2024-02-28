@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Data;
 using System.Net.Security;
+using System.Security.Cryptography;
 
 namespace FirstObjects_2024;
-
 
 public class Deck : IEnumerable<Card>
 {
@@ -83,13 +83,20 @@ public class Deck : IEnumerable<Card>
     /// </summary>
     /// <param name="card">The card to add.</param>
     public void AddToBottom(IEnumerable<Card> cards) => _cards.AddRange(cards);
-    
+
     /// <summary>
     /// Using the Random Number Generator
     /// interest the card randomly into the current list of Cards
     /// </summary>
     /// <param name="card">The card to be inserted.</param>
-    //public void InsertRandomly(Card card){...}
+    
+    private static readonly Random rand = new();
+    
+    public void InsertRandomly(Card card)
+    {
+        var n = rand.Next(_cards.Count);
+        _cards.Insert(n, card);
+    }
 
     /// <summary>
     /// Using the Random Number Generator
@@ -97,7 +104,10 @@ public class Deck : IEnumerable<Card>
     /// <param name="cards">The cards to be inserted.</param>
     public void InsertRandomly(IEnumerable<Card> cards)
     {
-        
+        foreach (var card in cards)
+        {
+            InsertRandomly(card);
+        }
     }
 
     /// <summary>

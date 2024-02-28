@@ -15,9 +15,28 @@ public class Player
     get
     {
       var total = 0;
-      foreach (var card in _hand)
+      var sorted = _hand.OrderBy(card => (int)card.Value);
+      foreach (var card in sorted)
+      {
+        if (card.Value == Value.Jack ||
+            card.Value == Value.Queen ||
+            card.Value == Value.King)
+             total += 10;
+        
+        else if (card.Value == Value.AceLow||
+                  card.Value == Value.AceHigh)
+        {
+          total += 11;
+          if (total > 21)
+            total -= 10;
+        }
+        else
+        {
+          total += card.Value;
+        }
         total += card.Value;
-
+      }
+      
       return total;
     }
   }

@@ -1,18 +1,41 @@
 ﻿using System.Runtime.InteropServices.ComTypes;
 using FirstObjects_2024;
 
-Console.WriteLine("Let's Play Cards!");
 
+Console.WriteLine("Let's Play BlackJack!");
 Deck deck = new();
-foreach (var card in deck)
+deck.Shuffle();
+
+Player dealer = new(), player = new();
+dealer.Hit(deck.DealOne());
+player.Hit(deck.DealOne());
+dealer.Hit(deck.DealOne());
+player.Hit(deck.DealOne());
+
+Console.WriteLine($"Player: {player}");
+while (!player.DidStand)
 {
-    Console.WriteLine(card);
+    if (dealer.Score < 18)
+        dealer.Hit(deck.DealOne());
+    else dealer.Stand();
+    
+    Console.WriteLine("Hit or Stand?");
+    var response = Console.ReadLine()!.ToUpperInvariant();
+
+    if (response.StartsWith("H"))
+        player.Hit(deck.DealOne());
+    else if (response.StartsWith("S"))
+        player.Stand();
+    else
+        Console.WriteLine("what ??");
 }
 
-var cards = deck.Deal(5).ToList();
-Console.WriteLine("I dealt some cards");
-
-foreach (var card in cards)
+while (!dealer.DidStand)
 {
-    Console.WriteLine(card);
+    if (dealer.Score < 18)
+        dealer.Hit(deck.DealOne());
+    else dealer.Stand();
 }
+
+Console.WriteLine($"Player: {player}");
+Console.WriteLine($"Dealer: {dealer}");
